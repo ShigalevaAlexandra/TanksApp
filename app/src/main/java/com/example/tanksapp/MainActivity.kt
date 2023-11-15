@@ -37,19 +37,23 @@ class MainActivity : AppCompatActivity() {
         when(direction) {
             UP -> {
                 binding.myTank.rotation = 0f
-                (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin += -50
+                if (((binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin) > 0)
+                        (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin -= 50
             }
             DOWN -> {
-                binding.myTank.rotation = 100f
-                (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin += 50
+                binding.myTank.rotation = 180f
+                 if (((binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin) < (binding.container.height - binding.myTank.height - 50))
+                         (binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin += 50
             }
             LEFT -> {
                 binding.myTank.rotation = 270f
-                (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin -= 50
+                if (((binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin) > 0)
+                        (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin -= 50
             }
             RIGHT -> {
                 binding.myTank.rotation = 90f
-                (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin += 50
+                if (((binding.myTank.layoutParams as FrameLayout.LayoutParams).topMargin) < (binding.container.width  - binding.myTank.width  - 50))
+                        (binding.myTank.layoutParams as FrameLayout.LayoutParams).leftMargin += 50
             }
         }
         binding.container.removeView(binding.myTank)
